@@ -5,19 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dieta de Definição | 2.200 kcal</title>
 
-  <!-- Favicon SVG Embutido -->
+  <!-- Favicon para navegadores (PC e Android) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%2338bdf8' stroke='%230284c7' stroke-width='3' stroke-linejoin='round'/></svg>" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%2338bdf8' stroke='%230284c7' stroke-width='3' stroke-linejoin='round'/></svg>" />
+  
+  <!-- Ícone Exclusivo para a Tela de Início do iPhone (iOS) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+
+  <!-- Configurações para Web App Nativo iOS -->
+  <meta name="apple-mobile-web-app-title" content="Dieta" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="theme-color" content="#09090b" />
 
   <style>
     :root {
-      /* Fundo Preto Intacto */
+      /* Fundo Preto Absoluto Mantido */
       --bg-dark: #09090b;
       
-      /* Cards e Estruturas */
+      /* Cards e Estrutura */
       --card-bg: #141417;
       --card-border: #27272a;
       
@@ -25,9 +31,9 @@
       --text-main: #f4f4f5;
       --text-sub: #a1a1aa;
       
-      /* Cores Vibrantes nos Elementos */
+      /* Cores Vibrantes nos Elementos / Botões */
       --color-cal: #38bdf8;     /* Azul Sky */
-      --color-prot: #f43f5e;    /* Rosa/Vermelho Proteína */
+      --color-prot: #f43f5e;    /* Rosa Proteína */
       --color-carb: #eab308;    /* Amarelo Carbo */
       --color-fat: #10b981;     /* Verde Gordura */
       
@@ -511,7 +517,7 @@
           ]
         },
         {
-          name: "Refeição 5: Ceia",
+          name: "Refeição 5: Ceia (Leve / Sem Carne)",
           time: "22:30",
           isOpen: false,
           items: [
