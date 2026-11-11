@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dieta de Definição | 2.200 kcal</title>
 
-  <!-- Favicon para navegadores (PC e Android) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%2338bdf8' stroke='%230284c7' stroke-width='3' stroke-linejoin='round'/></svg>" />
+  <!-- Favicon para navegadores -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%23f4f4f5' stroke='%2371717a' stroke-width='2'/></svg>" />
   
-  <!-- Ícone Exclusivo para a Tela de Início do iPhone (iOS) -->
+  <!-- Ícone para Tela de Início do iPhone (iOS) -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
 
@@ -20,31 +20,31 @@
 
   <style>
     :root {
-      /* Fundo Preto Absoluto Mantido */
+      /* Base Preto & Cinza Escuro Tátil */
       --bg-dark: #09090b;
-      
-      /* Cards e Estrutura */
-      --card-bg: #141417;
+      --card-bg: #121215;
       --card-border: #27272a;
-      
-      /* Textos */
+      --card-inner: #18181b;
+
+      /* Tipografia */
       --text-main: #f4f4f5;
-      --text-sub: #a1a1aa;
-      
-      /* Cores Vibrantes nos Elementos / Botões */
-      --color-cal: #38bdf8;     /* Azul Sky */
-      --color-prot: #f43f5e;    /* Rosa Proteína */
-      --color-carb: #eab308;    /* Amarelo Carbo */
-      --color-fat: #10b981;     /* Verde Gordura */
-      
-      --radius: 16px;
+      --text-sub: #71717a;
+      --text-muted: #52525b;
+
+      /* Acentos de Cor por Categoria Alimentar */
+      --c-cal: #38bdf8;   /* Azul Sky */
+      --c-prot: #fb7185;  /* Coral/Rosa Proteína */
+      --c-carb: #facc15;  /* Âmbar/Amarelo Carbo */
+      --c-fat: #34d399;   /* Menta/Verde Gordura */
+
+      --radius: 14px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
     }
 
     body {
@@ -52,112 +52,123 @@
       color: var(--text-main);
       padding: 16px;
       padding-bottom: 40px;
-      max-width: 600px;
+      max-width: 520px;
       margin: 0 auto;
       -webkit-tap-highlight-color: transparent;
+      letter-spacing: -0.01em;
     }
 
     header {
-      text-align: center;
+      margin-top: 12px;
       margin-bottom: 20px;
-      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 4px;
     }
 
     header h1 {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    header h1 svg {
-      width: 24px;
-      height: 24px;
+      letter-spacing: -0.02em;
     }
 
     header p {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-sub);
-      margin-top: 4px;
+      font-weight: 400;
     }
 
-    /* Cards de Macros Coloridos */
-    .macro-bar {
+    /* Grid de Macros */
+    .macro-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .macro-item {
-      background: #121215;
-      border-radius: 14px;
-      padding: 10px 4px;
+    .macro-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 12px 6px;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
-    .macro-item::before {
+    .macro-card::before {
       content: "";
       position: absolute;
-      top: 0;
+      top: 10px;
       left: 0;
-      right: 0;
-      height: 3px;
+      bottom: 10px;
+      width: 3px;
+      border-radius: 0 4px 4px 0;
     }
 
-    .macro-item.cal::before { background: var(--color-cal); }
-    .macro-item.prot::before { background: var(--color-prot); }
-    .macro-item.carb::before { background: var(--color-carb); }
-    .macro-item.fat::before { background: var(--color-fat); }
+    .macro-card.cal::before { background: var(--c-cal); }
+    .macro-card.prot::before { background: var(--c-prot); }
+    .macro-card.carb::before { background: var(--c-carb); }
+    .macro-card.fat::before { background: var(--c-fat); }
 
-    .macro-item span {
-      display: block;
+    .macro-label {
       font-size: 0.65rem;
       color: var(--text-sub);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       font-weight: 600;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 4px;
     }
 
-    .macro-item strong {
+    .macro-value {
       font-size: 0.95rem;
       font-weight: 700;
-      margin-top: 2px;
-      display: block;
     }
 
-    .macro-item.cal strong { color: var(--color-cal); }
-    .macro-item.prot strong { color: var(--color-prot); }
-    .macro-item.carb strong { color: var(--color-carb); }
-    .macro-item.fat strong { color: var(--color-fat); }
+    .macro-card.cal .macro-value { color: var(--c-cal); }
+    .macro-card.prot .macro-value { color: var(--c-prot); }
+    .macro-card.carb .macro-value { color: var(--c-carb); }
+    .macro-card.fat .macro-value { color: var(--c-fat); }
 
+    /* Controles Globais */
     .global-controls {
       display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-bottom: 16px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 4px;
     }
 
-    .btn-global {
-      background: #18181b;
-      border: 1px solid #3f3f46;
-      color: #e4e4e7;
-      padding: 7px 14px;
-      border-radius: 10px;
+    .section-tag {
       font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-sub);
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .btn-global:active {
-      background: #27272a;
-      transform: scale(0.96);
+    .btn-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-action {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:active {
+      background: var(--card-border);
+      color: var(--text-main);
     }
 
     /* Cards de Refeição */
@@ -165,89 +176,87 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       overflow: hidden;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease;
     }
 
     .meal-card.open {
-      border-color: #38bdf8;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
+      border-color: #3f3f46;
     }
 
     .meal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px;
+      padding: 14px 16px;
       cursor: pointer;
       user-select: none;
     }
 
-    .meal-header-left {
+    .meal-info {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .meal-title {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--text-main);
     }
 
-    .meal-time {
-      font-size: 0.75rem;
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: 600;
+    .meal-badge {
+      font-size: 0.7rem;
+      color: var(--text-sub);
+      background: var(--card-inner);
+      border: 1px solid var(--card-border);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 500;
     }
 
     .chevron {
-      color: var(--text-sub);
-      font-size: 0.85rem;
-      transition: transform 0.3s ease;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      transition: transform 0.25s ease;
     }
 
     .meal-card.open .chevron {
       transform: rotate(180deg);
-      color: #38bdf8;
+      color: var(--text-sub);
     }
 
     .meal-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+      transition: max-height 0.25s cubic-bezier(0, 1, 0, 1);
       padding: 0 16px;
     }
 
     .meal-card.open .meal-body {
-      max-height: 1000px;
+      max-height: 800px;
       transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-      padding: 0 16px 16px 16px;
-      border-top: 1px solid var(--card-border);
+      padding: 0 16px 14px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .food-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 12px;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .food-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      background: #09090b;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid #27272a;
+      background: var(--card-inner);
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
     }
 
     .food-info {
@@ -257,52 +266,56 @@
     }
 
     .food-name {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-main);
     }
 
     .food-detail {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-sub);
     }
 
-    /* Botão de Substituir Colorido */
+    /* Botão de Substituição Sutil por Categoria */
     .btn-sub {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #10b981;
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
       cursor: pointer;
-      white-space: nowrap;
-      min-height: 36px;
       transition: all 0.15s ease;
     }
 
+    .btn-sub[data-type="proteins"] { border-color: rgba(251, 113, 133, 0.3); color: var(--c-prot); }
+    .btn-sub[data-type="night_proteins"] { border-color: rgba(251, 113, 133, 0.3); color: var(--c-prot); }
+    .btn-sub[data-type="carbs"] { border-color: rgba(250, 204, 21, 0.3); color: var(--c-carb); }
+    .btn-sub[data-type="fats"] { border-color: rgba(52, 211, 153, 0.3); color: var(--c-fat); }
+    .btn-sub[data-type="fruits"] { border-color: rgba(56, 189, 248, 0.3); color: var(--c-cal); }
+    .btn-sub[data-type="veggies"] { border-color: rgba(52, 211, 153, 0.3); color: var(--c-fat); }
+
     .btn-sub:active {
-      background: #10b981;
-      color: #000;
-      transform: scale(0.95);
+      transform: scale(0.96);
+      opacity: 0.8;
     }
 
-    /* Modal / Lightbox */
+    /* Modal Lightbox */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
       display: flex;
       align-items: flex-end;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.2s ease;
       z-index: 100;
     }
 
@@ -312,17 +325,17 @@
     }
 
     .modal-content {
-      background: #141417;
-      border: 1px solid #3f3f46;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
+      background: #161619;
+      border: 1px solid var(--card-border);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
       width: 100%;
-      max-width: 600px;
-      max-height: 80vh;
+      max-width: 520px;
+      max-height: 75vh;
       overflow-y: auto;
-      padding: 24px;
+      padding: 20px;
       transform: translateY(100%);
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .modal-overlay.active .modal-content {
@@ -333,35 +346,37 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--card-border);
+      margin-bottom: 12px;
     }
 
     .modal-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
     }
 
     .btn-close {
-      background: #27272a;
-      border: none;
-      color: var(--text-main);
-      width: 32px;
-      height: 32px;
+      background: var(--card-inner);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      font-size: 0.9rem;
-      font-weight: bold;
+      font-size: 0.8rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .sub-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 4px;
-      border-bottom: 1px solid #27272a;
+      padding: 10px 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
     .sub-item:last-child {
@@ -369,48 +384,61 @@
     }
 
     .sub-name {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-main);
     }
 
     .sub-qty {
-      font-size: 0.82rem;
-      color: #38bdf8;
-      font-weight: 600;
-      background: rgba(56, 189, 248, 0.1);
-      padding: 4px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      background: var(--card-inner);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      font-weight: 500;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 520px) {
       .modal-overlay { align-items: center; }
-      .modal-content { border-radius: 20px; transform: translateY(20px); }
+      .modal-content { border-radius: 18px; transform: translateY(16px); }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M55 12L22 54h22l-6 34 35-44H50l5-32z" fill="#38bdf8" stroke="#0284c7" stroke-width="3" stroke-linejoin="round"/>
-      </svg>
-      Dieta de Definição
-    </h1>
-    <p>Gabriel Carvalho Santos • 2.200 kcal/dia</p>
+    <div>
+      <h1>Dieta de Definição</h1>
+      <p>Gabriel Carvalho Santos</p>
+    </div>
+    <p><strong>2.200</strong> kcal/dia</p>
   </header>
 
-  <section class="macro-bar">
-    <div class="macro-item cal"><span>Calorias</span><strong>2200</strong></div>
-    <div class="macro-item prot"><span>Proteína</span><strong>180g</strong></div>
-    <div class="macro-item carb"><span>Carbo</span><strong>212g</strong></div>
-    <div class="macro-item fat"><span>Gordura</span><strong>70g</strong></div>
+  <section class="macro-grid">
+    <div class="macro-card cal">
+      <span class="macro-label">Meta</span>
+      <span class="macro-value">2200</span>
+    </div>
+    <div class="macro-card prot">
+      <span class="macro-label">Proteína</span>
+      <span class="macro-value">180g</span>
+    </div>
+    <div class="macro-card carb">
+      <span class="macro-label">Carbo</span>
+      <span class="macro-value">212g</span>
+    </div>
+    <div class="macro-card fat">
+      <span class="macro-label">Gordura</span>
+      <span class="macro-value">70g</span>
+    </div>
   </section>
 
   <div class="global-controls">
-    <button class="btn-global" onclick="setAllCards(true)">Expandir Todas</button>
-    <button class="btn-global" onclick="setAllCards(false)">Recolher Todas</button>
+    <span class="section-tag">Refeições (~150-200g)</span>
+    <div class="btn-group">
+      <button class="btn-action" onclick="setAllCards(true)">Expandir</button>
+      <button class="btn-action" onclick="setAllCards(false)">Recolher</button>
+    </div>
   </div>
 
   <main id="diet-container"></main>
@@ -429,101 +457,97 @@
     const database = {
       substitutions: {
         carbs: [
-          { name: "Arroz (branco ou integral cozido)", qty: "90g" },
-          { name: "Batata-doce ou Mandioca cozida", qty: "100g" },
-          { name: "Batata inglesa cozida", qty: "140g" },
-          { name: "Aveia em flocos", qty: "35g" },
-          { name: "Pão de fôrma integral", qty: "2 fatias (~50g)" }
+          { name: "Arroz cozido", qty: "70g" },
+          { name: "Mandioca ou Batata-doce", qty: "60g" },
+          { name: "Pão integral", qty: "1 fatia (30g)" },
+          { name: "Aveia em flocos", qty: "25g" },
+          { name: "Tapioca (goma)", qty: "30g" }
         ],
         proteins: [
-          { name: "Peito de frango grelhado", qty: "100g" },
-          { name: "Patinho / Alcatra moída (magra)", qty: "110g" },
-          { name: "Filé de Tilápia ou Merluza", qty: "140g" },
-          { name: "Ovos inteiros grandes", qty: "4 unidades" },
-          { name: "Whey Protein (80%)", qty: "38g (~1.5 scoop)" }
+          { name: "Peito de Frango (pronto)", qty: "130g" },
+          { name: "Patinho / Carne moída magra", qty: "130g" },
+          { name: "Ovos inteiros grandes", qty: "3 unidades" },
+          { name: "Whey Protein 80%", qty: "35g (1.5 scoop)" },
+          { name: "Filé de Tilápia / Merluza", qty: "140g" }
         ],
         fats: [
           { name: "Azeite de Oliva Extra Virgem", qty: "1 col. sopa (10ml)" },
-          { name: "Abacate em cubos", qty: "70g" },
-          { name: "Pasta de Amendoim Integral", qty: "20g (1 col. rasa)" },
-          { name: "Castanha-do-Pará", qty: "15g (~3 unidades)" },
-          { name: "Manteiga", qty: "12g (1 col. sobremesa)" }
+          { name: "Pasta de Amendoim Integral", qty: "25g" },
+          { name: "Castanha-do-Pará", qty: "15g (~3 un.)" },
+          { name: "Abacate", qty: "50g" }
         ],
         fruits: [
-          { name: "Banana (prata ou caturra)", qty: "1 un. média (~70g)" },
-          { name: "Mamão Papaia", qty: "1/2 unidade (~140g)" },
-          { name: "Maçã (com casca)", qty: "1 un. média (~120g)" },
-          { name: "Morangos frescos", qty: "200g (~12-15 un.)" },
-          { name: "Melão ou Melancia em cubos", qty: "200g" }
+          { name: "Banana média", qty: "1 un. (~80g)" },
+          { name: "Morangos frescos", qty: "100g" },
+          { name: "Maçã média", qty: "1 un. (~100g)" }
         ],
         veggies: [
-          { name: "Brócolis (cozido/no vapor)", qty: "100g" },
-          { name: "Cenoura (cozida ou ralada)", qty: "100g" },
-          { name: "Abobrinha verde (grelhada)", qty: "120g" },
-          { name: "Chuchu ou Vagem (refogados)", qty: "120g" },
-          { name: "Abóbora cabotiá (assada)", qty: "100g" }
+          { name: "Brócolis / Cenoura no vapor", qty: "50g" },
+          { name: "Folhas verdes (Rúcula/Alface)", qty: "À vontade" }
         ],
         night_proteins: [
-          { name: "Iogurte Grego Desnatado", qty: "170g" },
-          { name: "Queijo Cotage / Ricota Leve", qty: "120g" },
-          { name: "Whey Protein 80%", qty: "1 scoop (30g)" },
-          { name: "Claras de Ovos (mexidas)", qty: "4 unidades" }
+          { name: "Queijo Cotage / Ricota leve", qty: "120g" },
+          { name: "Iogurte Grego Desnatado", qty: "130g" },
+          { name: "Whey Protein 80%", qty: "1 scoop (30g)" }
         ]
       },
       meals: [
         {
-          name: "Refeição 1: Pós-Treino Imediato",
-          time: "08:30",
+          name: "Refeição 1: Pós-Treino",
+          time: "08:30 • ~180g",
           isOpen: true,
           items: [
-            { name: "Ovos inteiros grandes", qty: "3 unidades", type: "proteins" },
-            { name: "Whey Protein 80%", qty: "1 scoop (30g)", type: "proteins" },
-            { name: "Aveia em flocos", qty: "50g", type: "carbs" },
-            { name: "Banana média", qty: "1 unidade", type: "fruits" }
+            { name: "Ovos inteiros mexidos", qty: "3 unidades (150g)", type: "proteins" },
+            { name: "Pão integral", qty: "1 fatia (30g)", type: "carbs" },
+            { name: "Whey Protein 80%", qty: "1 scoop", type: "proteins" }
           ]
         },
         {
-          name: "Refeição 2: Almoço",
-          time: "12:00",
+          name: "Refeição 2: Almoço Denso",
+          time: "12:00 • ~200g",
           isOpen: false,
           items: [
-            { name: "Peito de Frango grelhado", qty: "190g (pronto)", type: "proteins" },
-            { name: "Arroz cozido", qty: "150g", type: "carbs" },
-            { name: "Feijão cozido", qty: "100g", type: "carbs" },
-            { name: "Azeite de Oliva Extra Virgem", qty: "1 col. sopa (10ml)", type: "fats" },
-            { name: "Brócolis / Legumes", qty: "100g", type: "veggies" }
+            { name: "Peito de Frango grelhado/desfiado", qty: "130g", type: "proteins" },
+            { name: "Arroz cozido", qty: "70g", type: "carbs" },
+            { name: "Azeite de Oliva Extra Virgem", qty: "1 col. sopa (10ml)", type: "fats" }
           ]
         },
         {
-          name: "Refeição 3: Lanche da Tarde",
-          time: "16:00",
+          name: "Refeição 3: Creme Proteico",
+          time: "15:00 • ~160g",
           isOpen: false,
           items: [
-            { name: "Iogurte Grego Desnatado", qty: "200g", type: "proteins" },
-            { name: "Pão de fôrma integral", qty: "2 fatias", type: "carbs" },
-            { name: "Mamão Papaia", qty: "100g", type: "fruits" },
-            { name: "Pasta de Amendoim", qty: "15g", type: "fats" }
+            { name: "Iogurte Grego Desnatado", qty: "130g", type: "night_proteins" },
+            { name: "Whey Protein 80%", qty: "1 scoop (30g)", type: "proteins" }
           ]
         },
         {
-          name: "Refeição 4: Jantar",
-          time: "20:00",
+          name: "Refeição 4: Lanche Denso",
+          time: "18:00 • ~120g",
           isOpen: false,
           items: [
-            { name: "Patinho / Mignon Suíno", qty: "180g", type: "proteins" },
-            { name: "Batata-doce / Mandioca", qty: "200g", type: "carbs" },
-            { name: "Azeite de Oliva Extra Virgem", qty: "1 col. sopa (10ml)", type: "fats" },
-            { name: "Salada verde / Rúcula", qty: "À vontade", type: "veggies" }
+            { name: "Banana média", qty: "1 unidade (80g)", type: "fruits" },
+            { name: "Pasta de Amendoim Integral", qty: "30g", type: "fats" },
+            { name: "Castanha-do-Pará", qty: "10g", type: "fats" }
           ]
         },
         {
-          name: "Refeição 5: Ceia (Leve / Sem Carne)",
-          time: "22:30",
+          name: "Refeição 5: Jantar Denso",
+          time: "20:30 • ~190g",
           isOpen: false,
           items: [
-            { name: "Iogurte Grego ou Cotage", qty: "170g ou 120g", type: "night_proteins" },
-            { name: "Castanha-do-Pará / Abacate", qty: "15g ou 40g", type: "fats" },
-            { name: "Morangos frescos", qty: "100g", type: "fruits" }
+            { name: "Patinho moído / Mignon Suíno", qty: "130g", type: "proteins" },
+            { name: "Mandioca ou Batata-doce", qty: "60g", type: "carbs" },
+            { name: "Azeite de Oliva Extra Virgem", qty: "1 col. sopa (10ml)", type: "fats" }
+          ]
+        },
+        {
+          name: "Refeição 6: Ceia Leve",
+          time: "22:30 • ~150g",
+          isOpen: false,
+          items: [
+            { name: "Queijo Cotage ou Ricota leve", qty: "120g", type: "night_proteins" },
+            { name: "Morangos ou Geleia zero", qty: "50g", type: "fruits" }
           ]
         }
       ]
@@ -534,11 +558,11 @@
       container.innerHTML = database.meals.map((meal, index) => `
         <div class="meal-card ${meal.isOpen ? 'open' : ''}" id="card-${index}">
           <div class="meal-header" onclick="toggleCard(${index})">
-            <div class="meal-header-left">
-              <span class="chevron">▲</span>
+            <div class="meal-info">
+              <span class="chevron">▼</span>
               <h2 class="meal-title">${meal.name}</h2>
             </div>
-            <span class="meal-time">${meal.time}</span>
+            <span class="meal-badge">${meal.time}</span>
           </div>
           <div class="meal-body">
             <ul class="food-list">
@@ -548,7 +572,7 @@
                     <span class="food-name">${item.name}</span>
                     <span class="food-detail">${item.qty}</span>
                   </div>
-                  <button class="btn-sub" onclick="openModal('${item.type}')">Substituir</button>
+                  <button class="btn-sub" data-type="${item.type}" onclick="openModal('${item.type}')">Trocar</button>
                 </li>
               `).join('')}
             </ul>
@@ -573,8 +597,8 @@
       const body = document.getElementById("modal-body");
 
       const categoryTitles = {
-        proteins: "Substitutos de Proteína (Carnes/Ovos)",
-        night_proteins: "Substitutos de Proteína Leve (Ceia)",
+        proteins: "Substitutos de Proteína",
+        night_proteins: "Substitutos de Proteína Leve",
         carbs: "Substitutos de Carboidrato",
         fats: "Substitutos de Gorduras",
         fruits: "Substitutos de Frutas",
