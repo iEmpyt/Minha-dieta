@@ -5,32 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dieta de Definição | 2.200 kcal</title>
 
-  <!-- Favicon SVG Embutido (Data URI) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%23e4e4e7' stroke='%2371717a' stroke-width='3' stroke-linejoin='round'/></svg>" />
-  
-  <!-- Suporte para Web App / Atalho na Tela de Início (iOS e Android) -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%23e4e4e7' stroke='%2371717a' stroke-width='3' stroke-linejoin='round'/></svg>" />
+  <!-- Favicon SVG Embutido -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%2338bdf8' stroke='%230284c7' stroke-width='3' stroke-linejoin='round'/></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2309090b'/><path d='M55 12L22 54h22l-6 34 35-44H50l5-32z' fill='%2338bdf8' stroke='%230284c7' stroke-width='3' stroke-linejoin='round'/></svg>" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="theme-color" content="#09090b" />
 
   <style>
     :root {
-      /* Base Preto e Cinza Sutil */
-      --bg-dark: #09090b;          /* Preto Profundo */
-      --card-bg: #18181b;          /* Cinza Chumbo Escuro */
-      --card-border: #27272a;      /* Linhas Cinza Médio Discretas */
-      --card-hover: #202023;
+      /* Fundo Preto Intacto */
+      --bg-dark: #09090b;
       
-      /* Cores de Texto e Destaque */
-      --text-main: #f4f4f5;       /* Branco Acinzentado */
-      --text-sub: #a1a1aa;        /* Cinza Claro Suave */
-      --accent-muted: #d4d4d8;    /* Prateado para Ações */
-      --accent-bg: #27272a;
+      /* Cards e Estruturas */
+      --card-bg: #141417;
+      --card-border: #27272a;
       
-      /* Badges e Destaques */
-      --badge-bg: #27272a;
-      --badge-text: #e4e4e7;
+      /* Textos */
+      --text-main: #f4f4f5;
+      --text-sub: #a1a1aa;
+      
+      /* Cores Vibrantes nos Elementos */
+      --color-cal: #38bdf8;     /* Azul Sky */
+      --color-prot: #f43f5e;    /* Rosa/Vermelho Proteína */
+      --color-carb: #eab308;    /* Amarelo Carbo */
+      --color-fat: #10b981;     /* Verde Gordura */
+      
       --radius: 16px;
     }
 
@@ -68,8 +68,8 @@
     }
 
     header h1 svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
 
     header p {
@@ -78,6 +78,7 @@
       margin-top: 4px;
     }
 
+    /* Cards de Macros Coloridos */
     .macro-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -86,25 +87,48 @@
     }
 
     .macro-item {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+      background: #121215;
+      border-radius: 14px;
       padding: 10px 4px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+
+    .macro-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .macro-item.cal::before { background: var(--color-cal); }
+    .macro-item.prot::before { background: var(--color-prot); }
+    .macro-item.carb::before { background: var(--color-carb); }
+    .macro-item.fat::before { background: var(--color-fat); }
 
     .macro-item span {
       display: block;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       color: var(--text-sub);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      font-weight: 600;
     }
 
     .macro-item strong {
       font-size: 0.95rem;
-      color: var(--text-main);
+      font-weight: 700;
+      margin-top: 2px;
+      display: block;
     }
+
+    .macro-item.cal strong { color: var(--color-cal); }
+    .macro-item.prot strong { color: var(--color-prot); }
+    .macro-item.carb strong { color: var(--color-carb); }
+    .macro-item.fat strong { color: var(--color-fat); }
 
     .global-controls {
       display: flex;
@@ -114,33 +138,35 @@
     }
 
     .btn-global {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-sub);
-      padding: 6px 12px;
-      border-radius: 8px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #e4e4e7;
+      padding: 7px 14px;
+      border-radius: 10px;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .btn-global:active {
-      background: var(--card-border);
-      color: var(--text-main);
+      background: #27272a;
+      transform: scale(0.96);
     }
 
+    /* Cards de Refeição */
     .meal-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
       margin-bottom: 12px;
       overflow: hidden;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .meal-card.open {
-      border-color: #3f3f46;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
     }
 
     .meal-header {
@@ -148,7 +174,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px;
-      background: var(--card-bg);
       cursor: pointer;
       user-select: none;
     }
@@ -167,23 +192,23 @@
 
     .meal-time {
       font-size: 0.75rem;
-      background: var(--badge-bg);
-      color: var(--badge-text);
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
       padding: 4px 10px;
       border-radius: 20px;
-      font-weight: 500;
-      border: 1px solid var(--card-border);
+      font-weight: 600;
     }
 
     .chevron {
       color: var(--text-sub);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: transform 0.3s ease;
     }
 
     .meal-card.open .chevron {
       transform: rotate(180deg);
-      color: var(--text-main);
+      color: #38bdf8;
     }
 
     .meal-body {
@@ -213,10 +238,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      background: #121215;
+      background: #09090b;
       padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid #27272a;
     }
 
     .food-info {
@@ -236,14 +261,15 @@
       color: var(--text-sub);
     }
 
+    /* Botão de Substituir Colorido */
     .btn-sub {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-sub);
-      padding: 8px 12px;
-      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #10b981;
+      padding: 8px 14px;
+      border-radius: 10px;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
       min-height: 36px;
@@ -251,9 +277,9 @@
     }
 
     .btn-sub:active {
-      background: #27272a;
-      color: var(--text-main);
-      border-color: #52525b;
+      background: #10b981;
+      color: #000;
+      transform: scale(0.95);
     }
 
     /* Modal / Lightbox */
@@ -263,8 +289,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -280,8 +306,8 @@
     }
 
     .modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: #141417;
+      border: 1px solid #3f3f46;
       border-top-left-radius: 24px;
       border-top-right-radius: 24px;
       width: 100%;
@@ -308,16 +334,16 @@
 
     .modal-title {
       font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-main);
+      font-weight: 700;
+      color: #38bdf8;
     }
 
     .btn-close {
-      background: var(--card-border);
+      background: #27272a;
       border: none;
-      color: var(--text-sub);
-      width: 30px;
-      height: 30px;
+      color: var(--text-main);
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       font-size: 0.9rem;
       font-weight: bold;
@@ -329,7 +355,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 4px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid #27272a;
     }
 
     .sub-item:last-child {
@@ -343,12 +369,12 @@
 
     .sub-qty {
       font-size: 0.82rem;
-      color: var(--text-sub);
-      font-weight: 500;
-      background: #121215;
-      padding: 4px 8px;
-      border-radius: 6px;
-      border: 1px solid var(--card-border);
+      color: #38bdf8;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
     @media (min-width: 600px) {
@@ -362,7 +388,7 @@
   <header>
     <h1>
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M55 12L22 54h22l-6 34 35-44H50l5-32z" fill="#f4f4f5" stroke="#71717a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M55 12L22 54h22l-6 34 35-44H50l5-32z" fill="#38bdf8" stroke="#0284c7" stroke-width="3" stroke-linejoin="round"/>
       </svg>
       Dieta de Definição
     </h1>
@@ -370,10 +396,10 @@
   </header>
 
   <section class="macro-bar">
-    <div class="macro-item"><span>Calorias</span><strong>2200</strong></div>
-    <div class="macro-item"><span>Proteína</span><strong>180g</strong></div>
-    <div class="macro-item"><span>Carbo</span><strong>212g</strong></div>
-    <div class="macro-item"><span>Gordura</span><strong>70g</strong></div>
+    <div class="macro-item cal"><span>Calorias</span><strong>2200</strong></div>
+    <div class="macro-item prot"><span>Proteína</span><strong>180g</strong></div>
+    <div class="macro-item carb"><span>Carbo</span><strong>212g</strong></div>
+    <div class="macro-item fat"><span>Gordura</span><strong>70g</strong></div>
   </section>
 
   <div class="global-controls">
